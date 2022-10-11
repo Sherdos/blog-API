@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lhudfi5fi93v7kt1i!q3n^^+c-ib)d38j#%$$c1(l+(g9g0@e8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+
+    #docs
+    'drf_yasg',
+    'corsheaders',
+
 
     #apps
     'apps.posts',
@@ -52,6 +57,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+ORS_ALLOWED_ORIGINS = [
+"https://domain.com",
+"https://api.domain.com",
+"http://localhost:1000",
+"http://localhost:2000",
+"http://localhost:3000",
+"http://localhost:4000",
+"http://localhost:5000",
+"http://localhost:6000",
+"http://localhost:7000",
+"http://localhost:8000",
+"http://127.0.0.1:9000"
 ]
 
 ROOT_URLCONF = 'blogAPI.urls'
@@ -73,6 +94,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blogAPI.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 
 
 # Database

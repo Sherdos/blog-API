@@ -1,12 +1,14 @@
 from dataclasses import field
 from rest_framework import serializers
 from apps.users.models import User 
+from apps.posts.serializers import PostSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
+    post_user = PostSerializer(many = True, read_only = True)
     class Meta:
         model = User 
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'profile_image', 'phone')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'date_joined','profile_image', 'phone', 'post_user')
 
 class RegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length = 255, write_only=True)
